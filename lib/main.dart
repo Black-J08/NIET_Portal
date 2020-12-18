@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'login.dart';
+import 'examResults.dart';
+
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -13,7 +17,12 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blue[700],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      routes: {
+        '/': (context) => MyHomePage(),
+        '/login': (context) => LoginPage(),
+        '/examResults': (context) => ExamResultsPage(),
+      },
+      initialRoute: '/login',
     );
   }
 }
@@ -87,7 +96,7 @@ class MyHomePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              Icons.email_outlined,
+                              Icons.addchart_outlined,
                               size: 52,
                             ),
                             Text('Exam Results'),

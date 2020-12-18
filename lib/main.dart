@@ -104,7 +104,9 @@ class MyHomePage extends StatelessWidget {
                         ),
                         color: Colors.blue[700],
                         textColor: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/examResults');
+                        },
                       ),
                     ),
                   ),

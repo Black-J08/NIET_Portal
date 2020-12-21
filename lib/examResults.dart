@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'functions.dart';
@@ -27,6 +29,7 @@ class _ExamResultsPageState extends State<ExamResultsPage> {
 
   void toggleVisibility() {
     setState(() {
+      sleep(Duration(milliseconds: 500));
       _loadingVisibility = !_loadingVisibility;
       _loadingWebViewVisibility = !_loadingWebViewVisibility;
     });

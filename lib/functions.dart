@@ -51,3 +51,12 @@ Future<void> loginController(InAppWebViewController controller) async {
   document.getElementById('Ulogin').click();
   """);
 }
+
+Future<bool> isLoggedIn() async {
+  String path;
+  await _localPath.then((value) {
+    path = value;
+  });
+  print(path);
+  return File("$path/data.txt").existsSync();
+}

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'functions.dart';
 import 'login.dart';
 import 'examResults.dart';
 
-void main() {
+bool _isLoggedIn = false;
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await isLoggedIn().then((value) => _isLoggedIn = value);
   runApp(MyApp());
 }
 
@@ -18,11 +20,12 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        '/': (context) => MyHomePage(),
-        '/login': (context) => LoginPage(),
+        'home': (context) => MyHomePage(),
+        'login': (context) => LoginPage(),
         '/examResults': (context) => ExamResultsPage(),
       },
-      initialRoute: '/login',
+      home: MyHomePage(),
+      initialRoute: _isLoggedIn ? 'home' : 'login',
     );
   }
 }

@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                   final file = File('${dir.path}/data.txt');
                   file.writeAsString('${user.text}:${pass.text}');
 
-                  Navigator.pop(context);
+                  Navigator.pushReplacementNamed(context, 'home');
                 },
               ),
             ),

@@ -130,7 +130,10 @@ class MyHomePage extends StatelessWidget {
                         ),
                         color: Colors.blue[700],
                         textColor: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          logOut();
+                          Navigator.pushReplacementNamed(context, 'login');
+                        },
                       ),
                     ),
                   ),

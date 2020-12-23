@@ -52,6 +52,11 @@ Future<void> loginController(InAppWebViewController controller) async {
   """);
 }
 
+void logOut() async{
+  File file = await _localFile;
+  file.delete();
+}
+
 Future<bool> isLoggedIn() async {
   String path;
   await _localPath.then((value) {

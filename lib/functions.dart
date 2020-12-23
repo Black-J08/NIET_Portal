@@ -58,10 +58,6 @@ void logOut() async{
 }
 
 Future<bool> isLoggedIn() async {
-  String path;
-  await _localPath.then((value) {
-    path = value;
-  });
-  print(path);
-  return File("$path/data.txt").existsSync();
+  File file = await _localFile;
+  return file.existsSync();
 }

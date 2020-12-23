@@ -74,15 +74,17 @@ class MyHomePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              Icons.email_outlined,
+                              Icons.addchart_outlined,
                               size: 52,
                             ),
-                            Text('Mail'),
+                            Text('Exam Results'),
                           ],
                         ),
                         color: Colors.blue[700],
                         textColor: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/examResults');
+                        },
                       ),
                     ),
                   ),
@@ -99,17 +101,15 @@ class MyHomePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              Icons.addchart_outlined,
+                              Icons.account_circle_outlined,
                               size: 52,
                             ),
-                            Text('Exam Results'),
+                            Text('My Profile'),
                           ],
                         ),
                         color: Colors.blue[700],
                         textColor: Colors.white,
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/examResults');
-                        },
+                        onPressed: () {},
                       ),
                     ),
                   ),
@@ -122,10 +122,10 @@ class MyHomePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              Icons.account_circle_outlined,
+                              Icons.logout,
                               size: 52,
                             ),
-                            Text('My Profile'),
+                            Text('Log Out'),
                           ],
                         ),
                         color: Colors.blue[700],

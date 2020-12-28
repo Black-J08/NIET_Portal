@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:niet_portal/myProfile.dart';
 import 'functions.dart';
 import 'login.dart';
 import 'examResults.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         'home': (context) => MyHomePage(),
         'login': (context) => LoginPage(),
         '/examResults': (context) => ExamResultsPage(),
+        '/myProfile': (context) => MyProfilePage(),
       },
       home: MyHomePage(),
       initialRoute: _isLoggedIn ? 'home' : 'login',
@@ -109,7 +111,9 @@ class MyHomePage extends StatelessWidget {
                         ),
                         color: Colors.blue[700],
                         textColor: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/myProfile');
+                        },
                       ),
                     ),
                   ),

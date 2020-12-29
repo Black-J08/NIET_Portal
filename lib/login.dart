@@ -14,6 +14,8 @@ class _LoginPageState extends State<LoginPage> {
 
   HeadlessInAppWebView headlessLoginWebView;
 
+  bool invalidUserPass = false;
+
   @override
   void initState() {
     super.initState();
@@ -31,6 +33,12 @@ class _LoginPageState extends State<LoginPage> {
     headlessLoginWebView.dispose();
   }
 
+  void setInvalidUserPass() {
+    setState(() {
+      invalidUserPass = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +50,15 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Visibility(
+              child: Text(
+                "Invalid User Name or Password",
+                style: TextStyle(
+                  color: Colors.red,
+                ),
+              ),
+              visible: invalidUserPass,
+            ),
             Container(
               margin: EdgeInsets.fromLTRB(50, 10, 50, 7),
               child: TextField(
@@ -68,11 +85,17 @@ class _LoginPageState extends State<LoginPage> {
                   document.getElementById('Ulogin').click();
                   """);
 
-                  final dir = await getApplicationDocumentsDirectory();
-                  final file = File('${dir.path}/data.txt');
-                  file.writeAsString('${user.text}:${pass.text}');
+                  headlessLoginWebView.webViewController.getUrl().then((value) async {
+                    if (value == "http://www.nietcampus.com/Home/default.aspx" || value == "http://www.nietcampus.com/Home/") {
+                      setInvalidUserPass();
+                    } else {
+                      final dir = await getApplicationDocumentsDirectory();
+                      final file = File('${dir.path}/data.txt');
+                      file.writeAsString('${user.text}:${pass.text}');
 
-                  Navigator.pushReplacementNamed(context, 'home');
+                      Navigator.pushReplacementNamed(context, 'home');
+                    }
+                  });
                 },
               ),
             ),

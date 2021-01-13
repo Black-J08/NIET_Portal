@@ -1,5 +1,6 @@
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'dart:io';
 
 Future<String> get _localPath async {
@@ -60,4 +61,21 @@ void logOut() async{
 Future<bool> isLoggedIn() async {
   File file = await _localFile;
   return file.existsSync();
+}
+
+Future<List> getList() async {
+  firebase_storage.ListResult result = await firebase_storage.FirebaseStorage.instance.ref().child('Notices').listAll();
+  return result.items;
+}
+
+// Future<int> getListLenght() async {
+//   firebase_storage.ListResult result = await firebase_storage.FirebaseStorage.instance.ref().child('Notices').listAll();
+//   return result.items.length;
+// }
+
+Future<String> getPdfPath(firebase_storage.Reference ref) async {
+  Directory appDocDir = await getApplicationDocumentsDirectory();
+  File downloadToFile = File('${appDocDir.path}/${ref.name}');
+  ref.writeToFile(downloadToFile);
+  return downloadToFile.path;
 }

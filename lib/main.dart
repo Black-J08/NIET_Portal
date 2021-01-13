@@ -1,12 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:niet_portal/myProfile.dart';
 import 'functions.dart';
 import 'login.dart';
+import 'notices.dart';
 import 'examResults.dart';
 
 bool _isLoggedIn = false;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await isLoggedIn().then((value) => _isLoggedIn = value);
   runApp(MyApp());
 }
@@ -23,6 +26,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'home': (context) => MyHomePage(),
         'login': (context) => LoginPage(),
+        '/notices': (context) => NoticesPage(),
         '/examResults': (context) => ExamResultsPage(),
         '/myProfile': (context) => MyProfilePage(),
       },
@@ -63,7 +67,9 @@ class MyHomePage extends StatelessWidget {
                         ),
                         color: Colors.blue[700],
                         textColor: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/notices');
+                        },
                       ),
                     ),
                   ),

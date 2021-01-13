@@ -41,3 +41,6 @@ app.*.symbols
 app.*.map.json
 
 .vscode
+
+#Firebase service json
+android/app/google-services.json
